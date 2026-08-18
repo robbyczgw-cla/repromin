@@ -1,0 +1,68 @@
+# dependencies and build
+node_modules/
+dist/
+*.tsbuildinfo
+.turbo/
+.cache/
+
+# env and secrets — never commit real keys
+.env
+.env.*
+!.env.example
+!.env*.example
+*.pem
+*.p12
+*.pfx
+*.key
+*.crt
+id_rsa
+id_rsa.pub
+id_ed25519
+id_ed25519.pub
+*.keystore
+*.jks
+credentials.json
+service-account*.json
+secrets/
+*.secret
+.env.secret
+.npmrc
+.pypirc
+.netrc
+.auth.json
+auth.json
+*.token
+
+# local Playwright / ReproMin output
+test-results/
+playwright-report/
+blob-report/
+playwright/.cache/
+fixtures/test-results/
+fixtures/playwright-report/
+.repromin-cache/
+repromin-out/
+**/.repromin-*.spec.ts
+fixtures/tests/_*.spec.ts
+benchmarks/last-run.json
+
+# logs and debug
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+*~
+
+# coverage / misc
+coverage/
+.nyc_output/
+*.lcov
+.eslintcache

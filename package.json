@@ -1,0 +1,52 @@
+{
+  "name": "repromin",
+  "version": "0.1.0",
+  "description": "Minimize a failing Playwright test to the smallest action sequence that still reproduces the same failure.",
+  "type": "module",
+  "bin": {
+    "repromin": "./dist/cli.js"
+  },
+  "main": "./dist/index.js",
+  "exports": {
+    ".": "./dist/index.js"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE",
+    "docs"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "repromin": "tsx src/cli.ts",
+    "test": "tsx --test tests/unit/*.test.ts",
+    "test:unit": "tsx --test tests/unit/*.test.ts",
+    "test:live": "npx playwright test --config tests/live/playwright.config.ts && tsx --test --test-timeout 180000 tests/live/*.test.ts",
+    "check:leaks": "tsx scripts/check-leaks.ts",
+    "test:live:pw": "npx playwright test --config tests/live/playwright.config.ts",
+    "test:integration": "tsx --test --test-timeout 600000 tests/integration/*.test.ts",
+    "test:all": "npm run test:unit && npm run test:live",
+    "fixtures:serve": "tsx fixtures/apps/server.ts",
+    "demo": "tsx src/cli.ts fixtures/tests/killer.spec.ts --test \"checkout crashes\" --confirm 10 --config fixtures/playwright.config.ts",
+    "benchmark": "tsx scripts/benchmark.ts"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "keywords": [
+    "playwright",
+    "delta-debugging",
+    "test-reduction",
+    "minimization",
+    "reproducer"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "typescript": "^5.8.3"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.54.2",
+    "@types/node": "^22.15.29",
+    "tsx": "^4.20.3"
+  }
+}

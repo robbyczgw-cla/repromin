@@ -1,0 +1,80 @@
+[
+  {
+    "fixture": "A",
+    "originalActions": 30,
+    "originalLines": 47,
+    "reducedActions": 3,
+    "reductionRatio": 0.9,
+    "runs": 25,
+    "seconds": 104,
+    "fingerprintMatch": true,
+    "confirm": "1/1"
+  },
+  {
+    "fixture": "B",
+    "originalActions": 12,
+    "originalLines": 29,
+    "reducedActions": 5,
+    "reductionRatio": 0.583,
+    "runs": 39,
+    "seconds": 133.5,
+    "fingerprintMatch": true,
+    "confirm": "1/1"
+  },
+  {
+    "fixture": "C",
+    "originalActions": 6,
+    "originalLines": 24,
+    "reducedActions": 3,
+    "reductionRatio": 0.5,
+    "runs": 15,
+    "seconds": 52,
+    "fingerprintMatch": true,
+    "confirm": "1/1"
+  },
+  {
+    "fixture": "D",
+    "originalActions": 7,
+    "originalLines": 19,
+    "reducedActions": 4,
+    "reductionRatio": 0.429,
+    "runs": 23,
+    "seconds": 93.2,
+    "fingerprintMatch": true,
+    "confirm": "1/1"
+  },
+  {
+    "fixture": "E",
+    "originalActions": 12,
+    "originalLines": 24,
+    "reducedActions": 8,
+    "reductionRatio": 0.333,
+    "runs": 90,
+    "seconds": 473.5,
+    "fingerprintMatch": true,
+    "confirm": "1/1"
+  },
+  {
+    "fixture": "F",
+    "originalActions": 7,
+    "originalLines": 24,
+    "reducedActions": 3,
+    "reductionRatio": 0.571,
+    "runs": 31,
+    "seconds": 123.1,
+    "fingerprintMatch": true,
+    "confirm": "5/5"
+  },
+  {
+    "fixture": "killer",
+    "originalActions": 70,
+    "originalLines": 151,
+    "reducedActions": 9,
+    "reducedLines": 31,
+    "reductionRatio": 0.871,
+    "runs": 202,
+    "seconds": 744.1,
+    "fingerprintMatch": true,
+    "confirm": "10/10"
+  }
+]

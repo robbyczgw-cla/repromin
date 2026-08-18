@@ -1,0 +1,13 @@
+body { font-family: ui-sans-serif, system-ui, sans-serif; margin: 0; color: #111; }
+header, footer { display: flex; gap: 12px; align-items: center; padding: 12px 16px; background: #111; color: #fff; flex-wrap: wrap; }
+nav { display: flex; gap: 8px; flex-wrap: wrap; }
+main { padding: 16px; max-width: 960px; }
+.hidden { display: none !important; }
+.banner { display: flex; gap: 8px; padding: 8px 16px; background: #fef3c7; align-items: center; }
+.modal { position: fixed; inset: 20% 20%; background: #fff; border: 2px solid #111; padding: 20px; z-index: 20; box-shadow: 0 10px 40px rgba(0,0,0,.2); }
+#product-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 12px; }
+.card { border: 1px solid #ddd; padding: 12px; }
+#checkout-form { display: grid; gap: 8px; max-width: 420px; }
+button, input, select, textarea { font: inherit; }
+#checkout-modal { border-color: #b91c1c; }
+#checkout-modal-text { font-family: ui-monospace, monospace; }

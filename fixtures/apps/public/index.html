@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>ReproMin Fixture Shop</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <div id="cookie-banner" class="banner">
+    <span>We use cookies for demo analytics.</span>
+    <button id="cookie-settings">Cookie settings</button>
+    <button id="reject-cookies">Reject</button>
+    <button id="accept-cookies">Accept cookies</button>
+  </div>
+
+  <div id="newsletter-popup" class="modal hidden">
+    <h2>Join the newsletter</h2>
+    <input id="newsletter-email" placeholder="you@example.com" />
+    <button id="newsletter-submit">Subscribe</button>
+    <button id="newsletter-close">Close</button>
+    <p id="newsletter-status"></p>
+  </div>
+
+  <div id="survey-block" class="modal hidden">
+    <h2>Quick survey</h2>
+    <p>How did you hear about us?</p>
+    <button id="survey-dismiss">Not now</button>
+  </div>
+
+  <header>
+    <strong>FixtureMart</strong>
+    <nav>
+      <button data-nav="home" id="nav-home">Home</button>
+      <button data-nav="shop" id="nav-shop">Shop</button>
+      <button data-nav="blog" id="nav-blog">Blog</button>
+      <button data-nav="account" id="nav-account">Account</button>
+      <button data-nav="help" id="nav-help">Help</button>
+      <button data-nav="compare" id="nav-compare">Compare</button>
+      <button data-nav="wishlist" id="nav-wishlist">Wishlist</button>
+      <button data-nav="cart" id="nav-cart">Cart <span id="cart-count">0</span></button>
+    </nav>
+    <div>
+      <label>Currency
+        <select id="currency">
+          <option>USD</option>
+          <option>EUR</option>
+          <option>GBP</option>
+        </select>
+      </label>
+    </div>
+  </header>
+
+  <main>
+    <section id="view-home" class="view">
+      <h1>Welcome to FixtureMart</h1>
+      <p id="hero-copy">Deterministic shop used to prove Playwright action reduction.</p>
+      <button id="home-shop-cta" data-nav="shop">Browse shop</button>
+      <button id="open-newsletter">Get 10% off</button>
+      <button id="open-survey">Take survey</button>
+      <div id="promo-rail">
+        <button id="promo-summer">Summer sale</button>
+        <button id="promo-clearance">Clearance</button>
+        <button id="promo-new">New arrivals</button>
+      </div>
+    </section>
+
+    <section id="view-shop" class="view hidden">
+      <h1>Shop</h1>
+      <div class="toolbar">
+        <input id="search" placeholder="Search products" />
+        <button id="search-btn">Search</button>
+        <select id="sort">
+          <option value="featured">Featured</option>
+          <option value="price">Price</option>
+          <option value="name">Name</option>
+        </select>
+        <label><input type="checkbox" id="filter-widgets" /> Widgets</label>
+        <label><input type="checkbox" id="filter-gadgets" /> Gadgets</label>
+        <label><input type="checkbox" id="filter-in-stock" /> In stock</label>
+        <button id="clear-filters">Clear filters</button>
+      </div>
+      <div id="product-grid"></div>
+    </section>
+
+    <section id="view-product" class="view hidden">
+      <button id="back-to-shop" data-nav="shop">Back</button>
+      <h1 id="product-name"></h1>
+      <p id="product-desc"></p>
+      <p>Price: <span id="product-price"></span></p>
+      <label>Qty <input id="product-qty" type="number" value="1" min="1" /></label>
+      <label>Color
+        <select id="product-color">
+          <option>red</option>
+          <option>blue</option>
+          <option>black</option>
+        </select>
+      </label>
+      <label>Size
+        <select id="product-size">
+          <option>S</option>
+          <option>M</option>
+          <option>L</option>
+        </select>
+      </label>
+      <button id="add-to-cart">Add to cart</button>
+      <button id="add-to-wishlist">Add to wishlist</button>
+      <button id="add-to-compare">Compare</button>
+      <p id="product-status"></p>
+    </section>
+
+    <section id="view-cart" class="view hidden">
+      <h1>Cart</h1>
+      <ul id="cart-items"></ul>
+      <p id="cart-status">CART_EMPTY</p>
+      <button id="continue-shopping" data-nav="shop">Continue shopping</button>
+      <button id="cart-checkout" data-nav="checkout">Checkout</button>
+    </section>
+
+    <section id="view-checkout" class="view hidden">
+      <h1>Checkout</h1>
+      <form id="checkout-form">
+        <input id="email" placeholder="Email" />
+        <input id="full-name" placeholder="Full name" />
+        <input id="address1" placeholder="Address line 1" />
+        <input id="address2" placeholder="Address line 2" />
+        <input id="city" placeholder="City" />
+        <input id="zip" placeholder="ZIP" />
+        <select id="country">
+          <option>US</option>
+          <option>DE</option>
+          <option>GB</option>
+        </select>
+        <input id="card-number" placeholder="Card number" />
+        <input id="card-exp" placeholder="MM/YY" />
+        <input id="card-cvc" placeholder="CVC" />
+        <input id="promo" placeholder="Promo code" />
+        <button type="button" id="apply-promo">Apply promo</button>
+        <p id="promo-status"></p>
+        <button type="button" id="enable-experimental">Enable experimental checkout</button>
+        <button type="button" id="unlock-promo">Unlock promo field</button>
+        <p id="flag-status"></p>
+        <button type="button" id="place-order">Place order</button>
+      </form>
+    </section>
+
+    <section id="view-account" class="view hidden">
+      <h1>Account</h1>
+      <input id="profile-name" placeholder="Display name" />
+      <input id="profile-phone" placeholder="Phone" />
+      <button id="save-profile">Save profile</button>
+      <button id="open-addresses">Addresses</button>
+      <button id="open-payments">Payment methods</button>
+      <p id="account-status"></p>
+    </section>
+
+    <section id="view-blog" class="view hidden">
+      <h1>Blog</h1>
+      <article id="post-1"><h2>How we ship widgets</h2><button id="read-post-1">Read</button></article>
+      <article id="post-2"><h2>Return policy explained</h2><button id="read-post-2">Read</button></article>
+      <article id="post-3"><h2>Engineering notes</h2><button id="read-post-3">Read</button></article>
+      <p id="blog-status"></p>
+    </section>
+
+    <section id="view-help" class="view hidden">
+      <h1>Help</h1>
+      <button id="faq-shipping">Shipping FAQ</button>
+      <button id="faq-returns">Returns FAQ</button>
+      <button id="faq-billing">Billing FAQ</button>
+      <button id="contact-support">Contact support</button>
+      <textarea id="support-message" placeholder="How can we help?"></textarea>
+      <p id="help-status"></p>
+    </section>
+
+    <section id="view-compare" class="view hidden">
+      <h1>Compare</h1>
+      <ul id="compare-list"></ul>
+      <button id="clear-compare">Clear compare</button>
+    </section>
+
+    <section id="view-wishlist" class="view hidden">
+      <h1>Wishlist</h1>
+      <ul id="wishlist-list"></ul>
+      <button id="clear-wishlist">Clear wishlist</button>
+    </section>
+
+    <section id="view-secret" class="view hidden">
+      <h1>Internal tools</h1>
+      <button id="reveal-secret">Reveal diagnostics</button>
+      <button id="confirm-reveal">Confirm reveal</button>
+      <div id="secret-panel" class="hidden"></div>
+    </section>
+  </main>
+
+  <div id="checkout-modal" class="modal hidden" role="dialog" aria-label="checkout-modal">
+    <h2>Checkout result</h2>
+    <p id="checkout-modal-text"></p>
+    <button id="close-modal">Close</button>
+  </div>
+
+  <footer>
+    <button id="open-secret" data-nav="secret">Diagnostics</button>
+    <span id="app-ready">ready</span>
+  </footer>
+
+  <script src="/app.js"></script>
+</body>
+</html>
