@@ -11,6 +11,10 @@ Same failure fingerprint: YES
 Confirmed: 10/10
 ```
 
+**Experimental v0.1.** This is a research CLI, not a product platform. It only reduces straight-line TypeScript Playwright tests, and a 70-action spec can take around 12 minutes.
+
+The shop in `fixtures/` (**FixtureMart**) is a local fake store used as a lab. It is not a real shop, has no backend, and talks to nothing on the internet.
+
 v0.1 asks one question:
 
 > Can we reliably remove Playwright test actions while preserving a **specific** failure?

@@ -27,4 +27,16 @@ describe("live CLI", () => {
     assert.notEqual(result.status, 0);
     assert.match(result.stderr, /not found/i);
   });
+
+  it("dry-run on compact lists the noise fills and the crash actions", () => {
+    const result = spawnSync(
+      "npx",
+      ["tsx", "src/cli.ts", "fixtures/tests/g-compact.spec.ts", "--test", "compact", "--dry-run"],
+      { cwd: root, encoding: "utf8" },
+    );
+    assert.equal(result.status, 0, result.stderr);
+    assert.match(result.stdout, /#promo/);
+    assert.match(result.stdout, /place-order/);
+    assert.match(result.stdout, /#email/);
+  });
 });

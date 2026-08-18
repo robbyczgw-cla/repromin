@@ -41,6 +41,14 @@
     "reproducer"
   ],
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/robbyczgw-cla/repromin.git"
+  },
+  "bugs": {
+    "url": "https://github.com/robbyczgw-cla/repromin/issues"
+  },
+  "homepage": "https://github.com/robbyczgw-cla/repromin#readme",
   "dependencies": {
     "typescript": "^5.8.3"
   },
