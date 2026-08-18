@@ -26,6 +26,14 @@ Real terminal session on this machine: dry-run of the 70-action killer spec, the
 Needs Node 20+ and Chromium.
 
 ```bash
+npm install -g repromin
+npx playwright install chromium
+repromin checkout.spec.ts --test "checkout crashes" --dry-run
+```
+
+From a clone, for development:
+
+```bash
 git clone https://github.com/robbyczgw-cla/repromin.git
 cd repromin
 npm install

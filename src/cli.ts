@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 import { parseArgs } from "node:util";
-import { resolve, dirname } from "node:path";
+import { resolve, dirname, basename } from "node:path";
 import { existsSync } from "node:fs";
 import { formatSummary, reduceTest } from "./reduce.js";
 import { parsePlaywrightTest } from "./parse.js";
@@ -142,8 +142,15 @@ async function main(argv: string[]): Promise<number> {
   return 0;
 }
 
-const isMain = process.argv[1] && resolve(process.argv[1]) === resolve(new URL(import.meta.url).pathname);
-if (isMain || process.argv[1]?.endsWith("cli.ts") || process.argv[1]?.endsWith("cli.js")) {
+export function isCliEntry(argv1: string | undefined, modulePath: string): boolean {
+  if (!argv1) return false;
+  const entry = resolve(argv1);
+  if (entry === resolve(modulePath)) return true;
+  const base = basename(entry);
+  return base === "repromin" || base === "cli.js" || base === "cli.ts";
+}
+
+if (isCliEntry(process.argv[1], new URL(import.meta.url).pathname)) {
   main(process.argv.slice(2)).then(
     (code) => process.exit(code),
     (err) => {

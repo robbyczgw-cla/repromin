@@ -1,6 +1,6 @@
 {
   "name": "repromin",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Minimize a failing Playwright test to the smallest action sequence that still reproduces the same failure.",
   "type": "module",
   "bin": {
