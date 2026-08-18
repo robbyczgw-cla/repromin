@@ -21,3 +21,24 @@ ffmpeg -y -f concat -safe 0 -i demo/video/concat.txt \
 ```
 
 Output: `demo/repromin-demo.mp4` (1920×1080, ~22s).
+
+## Terminal recording
+
+This is a **real** session (dry-run of the 70-action killer spec, then a live compact reduce).
+
+```bash
+asciinema rec --overwrite -y --cols 108 --rows 32 -i 0.6 \
+  -c "bash demo/video/record-terminal.sh" \
+  demo/repromin-terminal.cast
+
+# needs https://github.com/asciinema/agg
+agg --font-size 16 --theme monokai --speed 1 --idle-time-limit 1.2 \
+  --last-frame-duration 3 \
+  demo/repromin-terminal.cast demo/repromin-terminal.gif
+
+ffmpeg -y -i demo/repromin-terminal.gif \
+  -vf "scale=trunc(iw/2)*2:trunc(ih/2)*2,fps=20,format=yuv420p" \
+  -c:v libx264 -crf 20 -movflags +faststart demo/repromin-terminal.mp4
+```
+
+Play back: `asciinema play demo/repromin-terminal.cast`
