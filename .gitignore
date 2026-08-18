@@ -45,6 +45,8 @@ repromin-out/
 **/.repromin-*.spec.ts
 fixtures/tests/_*.spec.ts
 benchmarks/last-run.json
+demo/video/frames/
+demo/video/concat.txt
 
 # logs and debug
 *.log

@@ -15,6 +15,8 @@ You had a codegen or copy-paste spec with dozens of clicks. The real bug only ne
 
 Experimental **v0.1** — a local CLI, not a cloud product. MIT license.
 
+[Watch the 22s demo](demo/repromin-demo.mp4) — 70 actions to 9, same `PAYMENT_GATEWAY_CRASH`, 10/10.
+
 ## Quick start
 
 Needs Node 20+ and Chromium.

@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>ReproMin demo slides</title>
+  <style>
+    @import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&display=swap");
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { background: #09090b; }
+    .slide {
+      width: 1920px;
+      height: 1080px;
+      padding: 88px 104px;
+      background: radial-gradient(1200px 700px at 80% -10%, #14532d33, transparent 55%), #09090b;
+      color: #fafafa;
+      font-family: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .slide.on { display: flex; }
+    .kicker {
+      font-family: "IBM Plex Mono", ui-monospace, monospace;
+      color: #34d399;
+      letter-spacing: 0.16em;
+      font-size: 22px;
+      font-weight: 500;
+      text-transform: uppercase;
+      margin-bottom: 22px;
+    }
+    h1 { font-size: 92px; font-weight: 700; letter-spacing: -0.04em; line-height: 0.95; }
+    .sub { margin-top: 28px; font-size: 34px; color: #a1a1aa; max-width: 1400px; line-height: 1.35; }
+    .cols { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; margin-top: 36px; }
+    .card {
+      background: #18181b;
+      border: 1px solid #27272a;
+      border-radius: 20px;
+      padding: 36px 40px;
+    }
+    .card h2 { font-size: 22px; color: #a1a1aa; font-family: "IBM Plex Mono", monospace; margin-bottom: 16px; }
+    .big { font-size: 76px; font-weight: 700; letter-spacing: -0.04em; }
+    .muted { color: #71717a; font-size: 28px; margin-top: 8px; }
+    .ok { color: #34d399; }
+    .bad { color: #fb7185; }
+    pre, code, .mono { font-family: "IBM Plex Mono", ui-monospace, monospace; }
+    pre {
+      font-size: 26px;
+      line-height: 1.45;
+      color: #e4e4e7;
+      white-space: pre;
+    }
+    .cmd {
+      background: #111113;
+      border: 1px solid #27272a;
+      border-radius: 16px;
+      padding: 32px 36px;
+      font-size: 28px;
+      line-height: 1.5;
+      color: #d4d4d8;
+    }
+    .cmd .p { color: #34d399; }
+    .log { font-size: 24px; line-height: 1.55; }
+    .log .i { color: #34d399; }
+    .log .u { color: #fbbf24; }
+    .log .n { color: #71717a; }
+    .foot {
+      position: absolute;
+      bottom: 48px;
+      left: 104px;
+      right: 104px;
+      display: flex;
+      justify-content: space-between;
+      color: #52525b;
+      font-family: "IBM Plex Mono", monospace;
+      font-size: 20px;
+    }
+    .pill {
+      display: inline-block;
+      align-self: flex-start;
+      border: 1px solid #14532d;
+      color: #34d399;
+      padding: 8px 14px;
+      border-radius: 999px;
+      font-size: 20px;
+      margin-bottom: 24px;
+    }
+  </style>
+</head>
+<body>
+  <section class="slide on" id="s1">
+    <div class="pill">v0.1 · Playwright · local CLI</div>
+    <div class="kicker">ReproMin</div>
+    <h1>Shrink a failing<br>Playwright test.</h1>
+    <p class="sub">Keep the same crash. Delete the rest.</p>
+    <div class="foot"><span>github.com/robbyczgw-cla/repromin</span><span>01 / 07</span></div>
+  </section>
+
+  <section class="slide" id="s2">
+    <div class="kicker">The problem</div>
+    <h1 style="font-size:72px;">A codegen wander.<br>One real bug.</h1>
+    <div class="cols">
+      <div class="card">
+        <h2>BEFORE</h2>
+        <div class="big bad">70</div>
+        <div class="muted">actions · 151 lines</div>
+      </div>
+      <div class="card">
+        <h2>cookies · newsletter · blog · account · filters · billing</h2>
+        <pre>await page.locator("#promo-summer").click();
+await page.locator("#read-post-1").click();
+await page.locator("#save-profile").click();
+await page.locator("#filter-gadgets").check();
+… 60 more lines …</pre>
+      </div>
+    </div>
+    <div class="foot"><span>FixtureMart · local fake shop</span><span>02 / 07</span></div>
+  </section>
+
+  <section class="slide" id="s3">
+    <div class="kicker">Run</div>
+    <h1 style="font-size:64px; margin-bottom:36px;">One command.</h1>
+    <div class="cmd mono">
+      <span class="p">$</span> npx tsx src/cli.ts fixtures/tests/killer.spec.ts \<br>
+      &nbsp;&nbsp;--test "checkout crashes" \<br>
+      &nbsp;&nbsp;--error-regex "PAYMENT_GATEWAY_CRASH" \<br>
+      &nbsp;&nbsp;--confirm 10
+    </div>
+    <p class="sub">Each candidate is a real Chromium run. Same failure only — not “any error”.</p>
+    <div class="foot"><span>Node 20+ · Playwright Chromium</span><span>03 / 07</span></div>
+  </section>
+
+  <section class="slide" id="s4">
+    <div class="kicker">Reduce</div>
+    <h1 style="font-size:64px; margin-bottom:28px;">Drop noise.<br>Keep the crash.</h1>
+    <pre class="log">Original fingerprint: Error: PAYMENT_GATEWAY_CRASH
+Removable units: 70
+
+<span class="n">[  2]</span> <span class="u">UNRESOLVED</span>      36 actions   timeout without goto
+<span class="n">[  5]</span> <span class="i">INTERESTING</span>     67 actions
+<span class="n">[ 46]</span> <span class="i">INTERESTING</span>     33 actions
+<span class="n">[100]</span> <span class="i">INTERESTING</span>     11 actions
+<span class="n">[178]</span> <span class="i">INTERESTING</span>      9 actions</pre>
+    <div class="foot"><span>202 candidate runs · 12.4 minutes on this machine</span><span>04 / 07</span></div>
+  </section>
+
+  <section class="slide" id="s5">
+    <div class="kicker">Result</div>
+    <div class="cols">
+      <div class="card">
+        <h2>BEFORE</h2>
+        <div class="big">70</div>
+        <div class="muted">actions</div>
+        <div class="big" style="margin-top:24px;">151</div>
+        <div class="muted">lines</div>
+      </div>
+      <div class="card">
+        <h2>AFTER</h2>
+        <div class="big ok">9</div>
+        <div class="muted">actions</div>
+        <div class="big ok" style="margin-top:24px;">31</div>
+        <div class="muted">lines</div>
+      </div>
+    </div>
+    <div class="foot"><span>87% fewer actions</span><span>05 / 07</span></div>
+  </section>
+
+  <section class="slide" id="s6">
+    <div class="kicker">The 9 that remain</div>
+    <pre>await page.goto("/");
+await page.locator("#nav-shop").click();
+await page.locator("#open-crash-widget").click();
+await page.locator("#add-to-cart").click();
+await page.locator("#nav-cart").click();
+await page.locator("#cart-checkout").click();
+await page.locator("#promo").fill("SAVE20");
+await page.locator("#place-order").click();
+await expect(page.locator("#checkout-modal-text"))
+  .toHaveText("ORDER_PLACED");</pre>
+    <div class="foot"><span>demo/killer.min.spec.ts</span><span>06 / 07</span></div>
+  </section>
+
+  <section class="slide" id="s7">
+    <div class="kicker">Same failure</div>
+    <h1 style="font-size:68px;">PAYMENT_GATEWAY_CRASH<br><span class="ok">10 / 10</span></h1>
+    <p class="sub">Expected ORDER_PLACED. Received “order total is NaN”. Not CART_EMPTY. Not a timeout on the wrong locator.</p>
+    <div class="foot"><span>github.com/robbyczgw-cla/repromin</span><span>07 / 07</span></div>
+  </section>
+
+  <script>
+    const id = new URLSearchParams(location.search).get("s") || "s1";
+    document.querySelectorAll(".slide").forEach((el) => el.classList.toggle("on", el.id === id));
+  </script>
+</body>
+</html>
