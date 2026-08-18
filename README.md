@@ -15,11 +15,11 @@ You had a codegen or copy-paste spec with dozens of clicks. The real bug only ne
 
 Experimental **v0.1** — a local CLI, not a cloud product. MIT license.
 
-[Watch the 22s slide demo](demo/repromin-demo.mp4) · [terminal recording](demo/repromin-terminal.mp4) (real Chromium reduce, 7 → 3)
-
-Replay the capture locally: `asciinema play demo/repromin-terminal.cast`
+Real terminal session on this machine: dry-run of the 70-action killer spec, then a live Chromium reduce **7 → 3** with the same crash.
 
 ![ReproMin terminal demo](demo/repromin-terminal.gif)
+
+[Slides: 70 → 9, 10/10](demo/repromin-demo.mp4) · [terminal MP4](demo/repromin-terminal.mp4) · `asciinema play demo/repromin-terminal.cast`
 
 ## Quick start
 
